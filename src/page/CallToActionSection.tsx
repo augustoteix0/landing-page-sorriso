@@ -57,7 +57,7 @@ export function CallToActionSection() {
             </a>
 
             <a
-              href="https://wa.me/seu-numero"
+              href="https://api.whatsapp.com/send/?phone=5511926295262&text=Ol%C3%A1%21+Vim+do+site+e+tenho+d%C3%BAvidas+sobre+os+cursos."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto py-4 px-8 rounded-xl font-syne font-bold text-xs uppercase tracking-wider bg-zinc-900 border border-zinc-800 hover:border-emerald-500/50 text-zinc-200 flex items-center justify-center gap-2 transition-all duration-300 group"
