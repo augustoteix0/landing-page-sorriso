@@ -1,18 +1,38 @@
 import { motion } from "framer-motion";
 
+interface ButtonProps {
+  texto?: string;
+  href?: string;
+  estilo?: string;
+}
+
 export function Button({ 
-  texto = "Fazer um Orçamento", 
-  estilo = "bg-black text-white" 
-}) {
+  texto = "VER PLANOS E ACESSO", 
+  href = "#ofertas",
+  estilo = "" 
+}: ButtonProps) {
   return (
     <motion.a
-      href="https://wa.me/5511926295262?text=Olá!%20Vim%20do%20site%20e%20gostaria%20de%20agendar%20uma%20reunião%20de%20diagnóstico%20estratégico." 
-      target="_blank"
+      href={href}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-      className={`px-4 py-1 rounded-full mt-4 cursor-pointer inline-block tracking-widest font-medium font-syne uppercase ${estilo}`}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.1, ease: "easeOut" }}
+      className={`
+        inline-flex items-center justify-center
+        px-8 py-3.5 mt-6 
+        rounded-full cursor-pointer 
+        font-syne font-bold text-xs sm:text-sm md:text-base uppercase tracking-wider
+        bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600
+        text-zinc-950 
+        shadow-[0_0_25px_rgba(249,115,22,0.35)]
+        hover:shadow-[0_0_35px_rgba(249,115,22,0.6)]
+        transition-all duration-300
+        animate-pulse
+        ${estilo}
+      `}
     >
       {texto}
     </motion.a>

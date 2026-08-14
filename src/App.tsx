@@ -1,27 +1,25 @@
 import { CallToActionSection } from "./page/CallToActionSection";
-import { ClienteGrandeSection } from "./page/ClienteGrande";
-import { CriteriosSections } from "./page/CriteriosSection";
-import { FaqSection } from "./page/FaqSection";
-import { HeaderSeaction } from "./page/HeaderSeaction";
+import { PricingSection } from "./page/PricingSection";
+import { GuaranteeSection } from "./page/GuaranteeSection";
+import { FAQSection } from "./page/FaqSection";
 import { HeroSection } from "./page/HeroSection";
-import { LogoCarousel } from "./page/LogoMarcas";
-import { PilaresSection } from "./page/PilaresSection";
-import { ServicoSection } from "./page/ServicosSection";
-import { TeseSection } from "./page/TeseSection";
+import { ProblemSection } from "./page/ProblemSection";
+import { TransformationSection } from "./page/TransformationSection";
+import { ShowcaseSection } from "./page/ShowcaseSection";
+import { PillarsSection } from "./page/PillarsSection";
 
 export function App() {
 
   return (
-    <div className="w-full overflow-hidden">
-      <HeaderSeaction />
+    <div className="w-full overflow-hidden bg-[#09090B] text-white">
       <HeroSection/>
-      <LogoCarousel/>
-      <TeseSection />
-      <PilaresSection />
-      <ServicoSection />
-      <ClienteGrandeSection />
-      <CriteriosSections />
-      <FaqSection/>
+      <ProblemSection/>
+      <PillarsSection />
+      <TransformationSection />
+      <ShowcaseSection />
+      <PricingSection />
+      <GuaranteeSection />
+      <FAQSection/>
       <CallToActionSection />
     </div>
   )

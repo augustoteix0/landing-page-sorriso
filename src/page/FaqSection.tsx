@@ -1,118 +1,123 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import prc1 from "../assets/prc1.webp"
+import { CaretDownIcon, QuestionIcon, ChatCircleDotsIcon } from "@phosphor-icons/react";
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
-const faqData: FAQItem[] = [
+const faqs = [
   {
-    question: "Como funciona o processo de trabalho da KFIR?",
-    answer: "Tudo começa com um diagnóstico estratégico do seu negócio. A partir daí, construímos uma operação personalizada que pode envolver conteúdo, posicionamento, anúncios, site e ecossistemas digitais, ou estruturação operacional com automações — conforme o que sua empresa realmente precisa. Você acompanha cada etapa com transparência total."
+    question: "Posso comprar apenas um dos cursos isoladamente?",
+    answer:
+      "Sim! Você tem total liberdade. Se o seu gargalo hoje é apenas organizar vendas, você pode adquirir só o Curso de CRM (R$ 97). Se precisa atrair clientes, pode pegar só o de Conteúdo (R$ 297). O Combo de R$ 500 é recomendado para quem deseja levar a estrutura completa com desconto.",
   },
   {
-    question: "Em quanto tempo os primeiros resultados aparecem?",
-    answer: "Depende do serviço — e ser honesto sobre isso é parte do nosso compromisso. Anúncios geram dados desde os primeiros dias. Conteúdo e posicionamento constroem autoridade entre 1 e 3 meses. Automações e estrutura operacional têm impacto imediato na produtividade da equipe. Sites são entregues entre 30 e 45 dias."
+    question: "Preciso saber programação para aprender n8n?",
+    answer:
+      "Não. A Formação em n8n foi desenhada do zero para profissionais de negócios, gestores e freelancers. Ensinamos a lógica visual de nós (nodes), integrações via Webhooks e rotas sem precisar escrever linhas de código complexas.",
   },
   {
-    question: "Preciso aparecer em vídeos para construir posicionamento de marca?",
-    answer: "Não necessariamente. Se preferir não aparecer, desenvolvemos produções institucionais de alto padrão — bastidores da operação, narrativas corporativas e conteúdo educativo da sua área. Se quiser aparecer, construímos uma presença que comunica autoridade. Em ambos os casos, o objetivo é o mesmo: sua marca é lembrada pelo valor que entrega, não pelo preço que cobra."
+    question: "Por quanto tempo terei acesso às aulas?",
+    answer:
+      "Você terá acesso garantido por 1 ano (12 meses) a todo o conteúdo gravado, incluindo futuras atualizações dos módulos e materiais de apoio.",
   },
   {
-    question: "Como funciona o serviço de Inteligência Artificial e Automações?",
-    answer: "Mapeamos como sua empresa funciona por dentro e implantamos um ecossistema de ferramentas integradas — CRM, Automações com N8N, integrações via API e agentes de IA — para que sua operação trabalhe de forma inteligente e previsível. O resultado é sua equipe foca no que gera valor, e as tarefas repetitivas acontecem de forma automática."
+    question: "Como e quando recebo meu acesso após a compra?",
+    answer:
+      "O acesso é imediato. Assim que o pagamento for confirmado (no PIX ou Cartão de Crédito é instantâneo), você receberá um e-mail com os dados de login para entrar na plataforma de alunos.",
   },
   {
-    question: "Os acessos, ferramentas e contas ficam comigo ao final do contrato?",
-    answer: "Sim. Tudo é seu. Contas de anúncios, domínio, site, ferramentas de gestão, automações e qualquer ativo digital desenvolvido pela Kfir — tudo registrado no nome ou CNPJ da sua empresa. Transparência não é um diferencial para nós. É uma obrigação."
+    question: "Qual ferramenta de CRM é ensinada no curso?",
+    answer:
+      "Ensinamos a metodologia de gestão de pipeline e processos comerciais que pode ser aplicada em qualquer CRM do mercado (Kommo, RD Station, HubSpot, Pipedrive, etc.), focando em conceitos visuais e acompanhamento de etapas.",
   },
   {
-    question: "A KFIR trabalha com contratos? Como funciona o compromisso?",
-    answer: "Sim, trabalhamos com contrato — e isso protege os dois lados. Oferecemos projetos pontuais para entregas específicas e planos mensais para serviços contínuos. O modelo ideal é definido na reunião de diagnóstico, após entendermos seus objetivos. Não existe pacote engessado — existe a solução certa para cada empresa."
+    question: "Como funciona a garantia de 7 dias?",
+    answer:
+      "Se dentro de 7 dias após a compra você entender que o treinamento não atendeu às suas expectativas, basta solicitar o reembolso na própria plataforma com 1 clique e devolveremos 100% do seu dinheiro.",
   },
-  {
-    question: "Como a KFIR acompanha e reporta os resultados do meu negócio?",
-    answer: "Você nunca fica no escuro. Cada serviço tem seus indicadores acompanhados de perto — e compartilhamos relatórios claros e diretos, sem encher de números que não significam nada. Nosso compromisso é com resultado real, não com relatório bonito. Qualquer dúvida ou ajuste necessário, nossa equipe está acessível e age rápido."
-  },
-  {
-    question: "Como dou o próximo passo para trabalhar com a KFIR?",
-    answer: "Simples: clique em qualquer botão desta página e inicie uma conversa no nosso WhatsApp. Nossa equipe fará uma pré-análise do seu negócio e agendará a reunião de diagnóstico estratégico. Se identificarmos que a KFIR é a parceira adequada para o seu momento, seguimos juntos. Se não for, te dizemos isso com honestidade."
-  }
 ];
 
-export function FaqSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+export function FAQSection() {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="MainContainer py-32 bg-white text-black px-4 md:px-10 overflow-hidden border-t border-zinc-100">
-      <div className="max-w-[1120px] mx-auto">
+    <section className="relative py-24 bg-zinc-950 text-zinc-100 border-t border-zinc-900 overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-orange-500/5 blur-[170px] pointer-events-none rounded-full" />
+
+      <div className="MainContainer px-4 md:px-10 relative z-10">
         
-        
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.5 }}
+            className="text-orange-500 font-syne text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-1.5"
           >
-            <span className="text-md md:text-xl font-normal font-syne text-center tracking-tight pb-10">
-              Dúvidas Frequentes
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold font-syne uppercase tracking-tight">
-              Perguntas <br /> Respondidas.
-            </h2>
-          </motion.div>
+            <QuestionIcon size={16} className="text-orange-500" /> Tira-Dúvidas
+          </motion.span>
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="font-syne font-bold text-2xl sm:text-4xl text-zinc-100 mt-2 leading-tight uppercase"
+          >
+            PERGUNTAS FREQUENTES
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-zinc-400 text-sm sm:text-base mt-4"
+          >
+            Tudo o que você precisa saber antes de escolher o seu treinamento.
+          </motion.p>
         </div>
 
-        
-        <div className="max-w-3xl mx-auto flex flex-col gap-4">
-          {faqData.map((item, index) => {
+        <div className="max-w-3xl mx-auto space-y-4">
+          {faqs.map((faq, index) => {
             const isOpen = openIndex === index;
+
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="border-b border-zinc-200 pb-4"
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="bg-zinc-900/40 border border-zinc-800/80 rounded-2xl overflow-hidden transition-colors hover:border-zinc-700"
               >
                 <button
                   onClick={() => toggleFAQ(index)}
-                  className="w-full flex justify-between items-center text-left py-4 cursor-pointer group"
+                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 font-syne font-bold text-sm sm:text-base text-zinc-100 focus:outline-none"
                 >
-                  <span className="font-syne text-lg md:text-xl font-bold text-black transition-colors duration-200 group-hover:text-zinc-600">
-                    {item.question}
-                  </span>
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="text-black flex-shrink-0 ml-4"
+                  <span>{faq.question}</span>
+                  <div
+                    className={`p-1.5 rounded-lg bg-zinc-800/80 text-orange-400 border border-zinc-700/50 transition-transform duration-300 ${
+                      isOpen ? "rotate-180 bg-orange-500/10 border-orange-500/30" : ""
+                    }`}
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>
-                  </motion.div>
+                    <CaretDownIcon size={18} weight="bold" />
+                  </div>
                 </button>
 
-                <AnimatePresence initial={false}>
+                <AnimatePresence>
                   {isOpen && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                      className="overflow-hidden"
+                      transition={{ duration: 0.3 }}
                     >
-                      <p className="font-montserrat text-zinc-700 text-base leading-relaxed pt-2 pb-4 pr-6">
-                        {item.answer}
-                      </p>
+                      <div className="px-5 sm:px-6 pb-6 text-zinc-400 text-xs sm:text-sm leading-relaxed border-t border-zinc-800/50 pt-4">
+                        {faq.answer}
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -121,28 +126,25 @@ export function FaqSection() {
           })}
         </div>
 
-      </div>
-      <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="flex flex-col items-center gap-2 mt-16 -mb-4 text-center"
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-14 text-center"
         >
-          <span className="text-zinc-600 text-[20px] font-bold tracking-[0.35em] uppercase font-syne">
-            Parceira
-          </span>
-          <div className="opacity-20 grayscale hover:opacity-40 transition-all duration-300">
-            <a href="https://www.kommo.com/br/" target="_blank">
-              <img 
-              src={prc1}
-              alt="Logo do Parceiro" 
-              className="h-20 md:h-20 w-auto object-contain"
-            />
+          <p className="text-xs sm:text-sm text-zinc-400">
+            Ainda ficou com alguma dúvida específica?{" "}
+            <a
+              href="#whatsapp-suporte"
+              className="text-orange-400 font-bold hover:underline inline-flex items-center gap-1"
+            >
+              <ChatCircleDotsIcon size={16} className="inline" /> Fale diretamente com o nosso suporte no WhatsApp
             </a>
-            
-          </div>
+          </p>
         </motion.div>
+
+      </div>
     </section>
   );
 }
