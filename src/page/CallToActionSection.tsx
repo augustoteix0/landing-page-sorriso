@@ -74,7 +74,7 @@ export function CallToActionSection() {
           
           <div className="text-center md:text-left space-y-1">
             <p className="font-syne font-bold text-zinc-300">
-              MÁQUINA DE VENDAS DIGITAIS
+              SERVIR SEMPRE.
             </p>
             <p>© {new Date().getFullYear()} Todos os direitos reservados.</p>
           </div>
